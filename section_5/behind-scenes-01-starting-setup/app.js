@@ -28,6 +28,12 @@ const app = Vue.createApp({
     },
     updated(){
       console.log('updated!')
+    },
+    beforeUmount(){
+      console.log('beforeUnmount!')
+    },
+    unmounted(){
+      console.log('unmounted()')
     }
   },
 });

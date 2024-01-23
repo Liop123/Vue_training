@@ -19,6 +19,7 @@
 
 <script>
 import SurveyResult from './SurveyResult.vue';
+import axios from 'axios'
 
 export default {
   components: {
@@ -31,23 +32,34 @@ export default {
   },
   methods: {
     loadExperiences() {
-      fetch('https://vue-http-demo-85e9e.firebaseio.com/surveys.json')
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-        })
-        .then((data) => {
-          const results = [];
-          for (const id in data) {
-            results.push({
-              id: id,
-              name: data[id].name,
-              rating: data[id].rating,
-            });
-          }
-          this.results = results;
-        });
+      axios.get('https://vue-http-demo-3d0d0-default-rtdb.firebaseio.com/surveys.json')
+      .then((res) =>{
+        const results = []
+        for(const id in res.data){
+          results.push({id: id, name: res.data[id].name, rating: res.data[id].rating})
+        }
+        this.results = results
+      })
+      .catch((err) => console.log(err))
+
+      // fetch('https://vue-http-demo-3d0d0-default-rtdb.firebaseio.com/surveys.json')
+      //   .then((response) => {
+      //     if (response.ok) {
+      //       return response.json();
+      //     }
+      //   })
+      //   .then((data) => {
+      //     const results = [];
+      //     for (const id in data) {
+      //       results.push({
+      //         id: id,
+      //         name: data[id].name,
+      //         rating: data[id].rating,
+      //       });
+      //     }
+      //     this.results = results;
+      //   });
+
     },
   },
 };

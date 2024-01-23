@@ -1,3 +1,4 @@
+
 <template>
   <section>
     <base-card>
@@ -38,6 +39,20 @@
 </template>
 
 <script>
+import axios from 'axios'
+
+// const instance  = axios.create({
+//   baseURL: `https://vue-http-demo-3d0d0-default-rtdb.firebaseio.com/surveys.json`,
+//   headers: {
+//     "Content-Type": "application/json"
+//   }
+// });
+
+const data = {
+  name: this.enteredName,
+  dating: this.chosenRating
+}
+
 export default {
   data() {
     return {
@@ -59,6 +74,26 @@ export default {
         userName: this.enteredName,
         rating: this.chosenRating,
       });
+
+      // fetch("https://vue-http-demo-3d0d0-default-rtdb.firebaseio.com/surveys.json", {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify({
+      //     name: this.enteredName,
+      //     rating: this.chosenRating
+      //   }),
+      // })
+
+      let data = {
+        name: this.enteredName,
+        rating: this.chosenRating
+      }
+      
+      axios.get("https://vue-http-demo-3d0d0-default-rtdb.firebaseio.com/surveys.json", data)
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error))
 
       this.enteredName = '';
       this.chosenRating = null;
