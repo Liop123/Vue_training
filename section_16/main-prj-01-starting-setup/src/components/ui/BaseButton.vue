@@ -64,6 +64,10 @@ button:active {
   color: #270041;
 }
 
+.hidden {
+    display: none;
+}
+
 .flat:hover,
 .flat:active,
 .outline:hover,
