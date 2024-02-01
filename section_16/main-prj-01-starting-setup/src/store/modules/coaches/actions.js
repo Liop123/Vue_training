@@ -57,5 +57,6 @@ export default {
     }
 
     context.commit('setCoaches', coaches)
+    console.log(coaches)
   },
 };
